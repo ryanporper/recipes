@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Recipe</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h1>Add New Recipe</h1>
+        </div>
+        <div class="row">
+            <form action="/recipe/create" method="post">
+                {% with messages = get_flashed_messages(category_filter=['new']) %}
+                    {% if messages %}
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Login Error</strong>
+                            {% for message in messages %}
+                            <p>{{message}}</p>
+                            {% endfor %}
+                    </div>
+                    {% endif %}
+                {% endwith %}
+                <div class="mb-3">
+                    <label for="name">Name</label>
+                    <input class="form-control" type="text" name="name" id="name">
+                </div>
+                <div class="mb-3">
+                    <label for="under">Under 30 mins</label>
+                    <input class="form-control" type="text" name="under" id="under">
+                </div>
+                <div class="mb-3">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" name="description" id="description" col="30" rows="10"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="instructions">Instructions</label>
+                    <textarea class="form-control" name="instructions" id="instructions" col="30" rows="10"></textarea>
+                </div>
+                <button class="btn btn-success">Add Recipe</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
